@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BackEnd.Domain.IRepositories;
 using BackEnd.Persistence.Context;
+using BackEnd.Persistence.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +30,9 @@ namespace BackEnd
         {
             services.AddDbContext<AplicationDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("Conexion")));
+
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
             services.AddControllers();
         }
 

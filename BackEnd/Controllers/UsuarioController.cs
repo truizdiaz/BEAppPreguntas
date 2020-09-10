@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BackEnd.Domain.IServices;
 using BackEnd.Domain.Models;
+using BackEnd.Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +30,7 @@ namespace BackEnd.Controllers
                 {
                     return BadRequest(new { message ="El usuario " + usuario.NombreUsuario + " ya existe!" } );
                 }
+                usuario.Password = Encriptar.EncriptarPassword(usuario.Password);
                 await _usuarioService.SaveUser(usuario);
 
                 return Ok(new { message = "Usuario registrado con exito!" });

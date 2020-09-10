@@ -50,8 +50,18 @@ namespace BackEnd.Controllers
         {
             try
             {
+                int idUsuario = 10;
                 string passwordEncriptado = Encriptar.EncriptarPassword(cambiarPassword.passwordAnterior);
-                return Ok(new { message = "La password fue actualizada con exito!" });
+                var usuario = await _usuarioService.ValidatePassword(idUsuario, passwordEncriptado);
+                if(usuario == null)
+                {
+                    return BadRequest(new { message = "La password es incrorrecta" });
+                } else
+                {
+                    return Ok(new { message = "La password fue actualizada con exito!" });
+
+                }
+
             }
             catch (Exception ex)
             {

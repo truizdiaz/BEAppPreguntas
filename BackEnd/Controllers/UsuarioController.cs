@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BackEnd.Domain.IServices;
 using BackEnd.Domain.Models;
+using BackEnd.DTO;
 using BackEnd.Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,22 @@ namespace BackEnd.Controllers
             catch (Exception ex)
             {
 
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // localhost:xxx/api/Usuario/CambiarPassword
+        [Route("CambiarPassowrd")]
+        [HttpPut]
+        public async Task<IActionResult> CambiarPassword([FromBody] CambiarPasswordDTO cambiarPassword)
+        {
+            try
+            {
+                string passwordEncriptado = Encriptar.EncriptarPassword(cambiarPassword.passwordAnterior);
+                return Ok(new { message = "La password fue actualizada con exito!" });
+            }
+            catch (Exception ex)
+            {
                 return BadRequest(ex.Message);
             }
         }

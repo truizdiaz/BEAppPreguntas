@@ -35,5 +35,11 @@ namespace BackEnd.Persistence.Repositories
             return usuario;
 
         }
+
+        public async Task UpdatePassword(Usuario usuario)
+        {
+            _context.Update(usuario);
+            await _context.SaveChangesAsync();
+        }
     }
 }

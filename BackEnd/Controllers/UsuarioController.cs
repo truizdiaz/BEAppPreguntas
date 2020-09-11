@@ -50,7 +50,7 @@ namespace BackEnd.Controllers
         {
             try
             {
-                int idUsuario = 10;
+                int idUsuario = 13;
                 string passwordEncriptado = Encriptar.EncriptarPassword(cambiarPassword.passwordAnterior);
                 var usuario = await _usuarioService.ValidatePassword(idUsuario, passwordEncriptado);
                 if(usuario == null)
@@ -58,6 +58,8 @@ namespace BackEnd.Controllers
                     return BadRequest(new { message = "La password es incrorrecta" });
                 } else
                 {
+                    usuario.Password = Encriptar.EncriptarPassword(cambiarPassword.nuevaPassword);
+                    await _usuarioService.UpdatePassword(usuario);
                     return Ok(new { message = "La password fue actualizada con exito!" });
 
                 }

@@ -30,5 +30,10 @@ namespace BackEnd.Services
         {
             return await _usuarioRepository.ValidatePassword(idUsuario, passwordAnterior);
         }
+
+        public async Task UpdatePassword(Usuario usuario)
+        {
+            await _usuarioRepository.UpdatePassword(usuario);
+        }
     }
 }

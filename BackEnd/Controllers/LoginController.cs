@@ -7,6 +7,7 @@ using BackEnd.Domain.Models;
 using BackEnd.Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace BackEnd.Controllers
 {
@@ -15,9 +16,11 @@ namespace BackEnd.Controllers
     public class LoginController : ControllerBase
     {
         private readonly ILoginService _loginService;
-        public LoginController(ILoginService loginService)
+        private readonly IConfiguration _config;
+        public LoginController(ILoginService loginService, IConfiguration config)
         {
             _loginService = loginService;
+            _config = config;
         }
 
         [HttpPost]
@@ -31,7 +34,7 @@ namespace BackEnd.Controllers
                 {
                     return BadRequest(new { message = "Usuario o contraseña invalidos" });
                 }
-
+                string tokenString = JwtConfigurator.GetToken(user, _config);
                 return Ok(new { usuario = user.NombreUsuario });
             }
             catch (Exception ex)

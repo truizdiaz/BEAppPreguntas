@@ -35,7 +35,7 @@ namespace BackEnd.Controllers
                     return BadRequest(new { message = "Usuario o contraseña invalidos" });
                 }
                 string tokenString = JwtConfigurator.GetToken(user, _config);
-                return Ok(new { usuario = user.NombreUsuario });
+                return Ok(new { token = tokenString });
             }
             catch (Exception ex)
             {

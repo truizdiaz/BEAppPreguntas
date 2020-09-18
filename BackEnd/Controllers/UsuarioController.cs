@@ -47,7 +47,7 @@ namespace BackEnd.Controllers
         }
 
         // localhost:xxx/api/Usuario/CambiarPassword
-        [Route("CambiarPassowrd")]
+        [Route("CambiarPassword")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPut]
         public async Task<IActionResult> CambiarPassword([FromBody] CambiarPasswordDTO cambiarPassword)

@@ -25,6 +25,6 @@ namespace BackEnd.Domain.Models
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
 
-        public List<Pregunta> Pregunta { get; set; }
+        public List<Pregunta> listPreguntas { get; set; }
     }
 }

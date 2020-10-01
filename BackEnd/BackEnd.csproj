@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200918140455_v1.1.cs" />
+    <Compile Remove="Migrations\20200918140455_v1.1.Designer.cs" />
+    <Compile Remove="Migrations\20200918140617_v1.1.cs" />
+    <Compile Remove="Migrations\20200918140617_v1.1.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />

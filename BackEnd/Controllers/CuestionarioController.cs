@@ -45,5 +45,24 @@ namespace BackEnd.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [Route("GetListCuestionarioByUser")]
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GetListCuestionarioByUser()
+        {
+            try
+            {
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                var listCuestionario = await _cuestionarioService.GetListCuestionarioByUser(idUsuario);
+                return Ok(listCuestionario);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

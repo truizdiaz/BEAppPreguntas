@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BackEnd.Services
 {
-    public class CuestionarioService: ICuestionarioService
+    public class CuestionarioService : ICuestionarioService
     {
         private readonly ICuestionarioRepository _cuestionarioRepository;
         public CuestionarioService(ICuestionarioRepository cuestionarioRepository)
@@ -29,6 +29,16 @@ namespace BackEnd.Services
         public async Task<Cuestionario> GetCuestionario(int idCuestionario)
         {
             return await _cuestionarioRepository.GetCuestionario(idCuestionario);
+        }
+
+        public async Task<Cuestionario> BuscarCuestionario(int idCuestionario)
+        {
+            return await _cuestionarioRepository.BuscarCuestionario(idCuestionario);
+        }
+
+        public async Task EliminarCuestionario(Cuestionario cuestionario)
+        {
+            return await _cuestionarioRepository.EliminarCuestionario(cuestionario);
         }
     }
 }

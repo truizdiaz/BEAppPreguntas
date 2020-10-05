@@ -39,5 +39,18 @@ namespace BackEnd.Persistence.Repositories
                                                                 .FirstOrDefaultAsync();
             return cuestionario;
         }
+
+        public async Task<Cuestionario> BuscarCuestionario(int idCuestionario)
+        {
+            var cuestionario = await _context.Cuestionario.Where(x => x.Id == idCuestionario && x.Activo == 1).FirstOrDefaultAsync();
+            return cuestionario;
+        }
+
+        public async Task EliminarCuestionario(Cuestionario cuestionario)
+        {
+            cuestionario.Activo = 0;
+            _context.Entry(cuestionario).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
     }
 }

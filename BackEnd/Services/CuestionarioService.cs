@@ -31,14 +31,14 @@ namespace BackEnd.Services
             return await _cuestionarioRepository.GetCuestionario(idCuestionario);
         }
 
-        public async Task<Cuestionario> BuscarCuestionario(int idCuestionario)
+        public async Task<Cuestionario> BuscarCuestionario(int idCuestionario, int idUsuario)
         {
-            return await _cuestionarioRepository.BuscarCuestionario(idCuestionario);
+            return await _cuestionarioRepository.BuscarCuestionario(idCuestionario, idUsuario);
         }
 
         public async Task EliminarCuestionario(Cuestionario cuestionario)
         {
-            return await _cuestionarioRepository.EliminarCuestionario(cuestionario);
+            await _cuestionarioRepository.EliminarCuestionario(cuestionario);
         }
     }
 }

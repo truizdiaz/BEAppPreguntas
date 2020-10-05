@@ -40,9 +40,9 @@ namespace BackEnd.Persistence.Repositories
             return cuestionario;
         }
 
-        public async Task<Cuestionario> BuscarCuestionario(int idCuestionario)
+        public async Task<Cuestionario> BuscarCuestionario(int idCuestionario, int idUsuario)
         {
-            var cuestionario = await _context.Cuestionario.Where(x => x.Id == idCuestionario && x.Activo == 1).FirstOrDefaultAsync();
+            var cuestionario = await _context.Cuestionario.Where(x => x.Id == idCuestionario && x.Activo == 1 && x.UsuarioId == idUsuario).FirstOrDefaultAsync();
             return cuestionario;
         }
 

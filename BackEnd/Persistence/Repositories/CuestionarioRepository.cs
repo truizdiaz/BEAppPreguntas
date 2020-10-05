@@ -33,7 +33,10 @@ namespace BackEnd.Persistence.Repositories
         public async Task<Cuestionario> GetCuestionario(int idCuestionario)
         {
             var cuestionario = await _context.Cuestionario.Where(x => x.Id == idCuestionario 
-                                                                && x.Activo == 1).FirstOrDefaultAsync();
+                                                                && x.Activo == 1)
+                                                                .Include(x => x.listPreguntas)
+                                                                .ThenInclude(x => x.listRespuestas)
+                                                                .FirstOrDefaultAsync();
             return cuestionario;
         }
     }

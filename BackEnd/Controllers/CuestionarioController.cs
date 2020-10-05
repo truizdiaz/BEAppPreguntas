@@ -64,5 +64,19 @@ namespace BackEnd.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("{idCuestionario}")]
+        public async Task<IActionResult> Get(int idCuestionario)
+        {
+            try
+            {
+                var cuestionario = await _cuestionarioService.GetCuestionario(idCuestionario);
+                return Ok(cuestionario);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BackEnd.Domain.IRepositories;
 using BackEnd.Domain.IServices;
+using BackEnd.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,11 @@ namespace BackEnd.Services
         public RespuestaCuestionarioService(IRespuestaCuestionarioRepository respuestaCuestionarioRepository)
         {
             _respuestaCuestionarioRepository = respuestaCuestionarioRepository;
+        }
+
+        public async Task SaveRespuestaCuestionario(RespuestaCuestionario respuestaCuestionario)
+        {
+            await _respuestaCuestionarioRepository.SaveRespuestaCuestionario(respuestaCuestionario);
         }
     }
 }

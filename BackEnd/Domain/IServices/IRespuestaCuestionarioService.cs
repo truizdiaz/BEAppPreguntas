@@ -8,6 +8,7 @@ namespace BackEnd.Domain.IServices
 {
     public interface IRespuestaCuestionarioService
     {
-        Task SaveRespuestaCuestionario(RespuestaCuestionario respuestaCuestionario):
+        Task SaveRespuestaCuestionario(RespuestaCuestionario respuestaCuestionario);
+        Task<List<RespuestaCuestionario>> ListRespuestaCuestionario(int idCuestionario, int idUsuario);
     }
 }

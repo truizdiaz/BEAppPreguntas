@@ -18,9 +18,11 @@ namespace BackEnd.Controllers
     public class RespuestaCuestionarioController : ControllerBase
     {
         private readonly IRespuestaCuestionarioService _respuestaCuestionarioService;
-        public RespuestaCuestionarioController(IRespuestaCuestionarioService respuestaCuestionarioService)
+        private readonly ICuestionarioService _cuestionarioService;
+        public RespuestaCuestionarioController(IRespuestaCuestionarioService respuestaCuestionarioService, ICuestionarioService cuestionarioService)
         {
             _respuestaCuestionarioService = respuestaCuestionarioService;
+            _cuestionarioService = cuestionarioService;
         }
 
         [HttpPost]
@@ -83,6 +85,27 @@ namespace BackEnd.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
+            }
+        }
+
+        [Route("GetCuestionarioByIdRespuesta/{idRespuesta}")]
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GetCuestionarioByIdRespuesta(int idRespuesta)
+        {
+            try
+            {
+                // Obtenemos el idCuestionario dado un idRespuesta
+
+                //Buscamos el cuestionario (Ya lo tenemos)
+                var cuestionario = await _cuestionarioService.GetCuestionario(idCuestionario);
+                
+                // Buscamos las respuestas seleccionadas dado un idRespuesta   
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message)
             }
         }
     }

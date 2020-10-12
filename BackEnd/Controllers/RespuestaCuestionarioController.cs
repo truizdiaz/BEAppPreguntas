@@ -59,5 +59,31 @@ namespace BackEnd.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
+
+                // Creamos un metodo para obtener la respuesta al cuestionario
+                var respuestaCuestionario = await _respuestaCuestionarioService.BuscarRespuestaCuestionario(id, idUsuario);
+                if(respuestaCuestionario == null)
+                {
+                    return BadRequest(new { message = "Error al buscar la respuesta al cuestionario" });
+                }
+
+                await _respuestaCuestionarioService.EliminarRespuestaCuestionario(respuestaCuestionario);
+                return Ok(new { message = "La respuesta al cuestionario fue eliminada con exito!" });
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

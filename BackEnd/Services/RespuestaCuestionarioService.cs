@@ -33,7 +33,7 @@ namespace BackEnd.Services
 
         public async Task EliminarRespuestaCuestionario(RespuestaCuestionario respuestaCuestionario)
         {
-            return await _respuestaCuestionarioRepository.EliminarRespuestaCuestionario(respuestaCuestionario);
+           await _respuestaCuestionarioRepository.EliminarRespuestaCuestionario(respuestaCuestionario);
         }
     }
 }
